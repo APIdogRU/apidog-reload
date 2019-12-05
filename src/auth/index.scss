@@ -1,5 +1,27 @@
+@import './constants.scss';
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    font-family: Lucida, verdana, tahoma, arial, sans-serif, Lucida Sans;
+}
+
+html,
+body,
+#root {
+    @media (min-width: 600px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+}
+
+body {
+    background: $auth-dark-color;
+    color: #ffffff;
 }

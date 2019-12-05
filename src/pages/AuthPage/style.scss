@@ -1,0 +1,26 @@
+@import '../../auth/constants.scss';
+
+.auth {
+    width: 95%;
+    margin: 20px auto;
+
+    @media (min-width: 600px) {
+        width: 300px;
+        margin: unset;
+    }
+
+    &-description {
+        text-align: center;
+    }
+
+    .logo {
+        margin: 12px auto 16px;
+    }
+
+    &-footer {
+        text-align: center;
+        color: #aaaaaa;
+        font-size: 10px;
+        margin: 10px 0 12px;
+    }
+}
