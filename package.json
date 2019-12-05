@@ -1,0 +1,59 @@
+{
+  "name": "@apidog/reload",
+  "version": "0.0.1",
+  "description": "APIdog site",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "webpack-dev-server --config .config/webpack.config.js --open",
+    "build": "webpack --config .config/webpack.config.js",
+    "test": "jest",
+    "lint:es": "npx eslint --ext .ts --ext .tsx ./src",
+    "lint:style": "npx stylelint src/",
+    "lint": "npm run lint:es && npm run lint:style"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APIdogRU/apidog-reload.git"
+  },
+  "author": "APIdog",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/APIdogRU/apidog-reload/issues"
+  },
+  "homepage": "https://github.com/APIdogRU/apidog-reload#readme",
+  "dependencies": {
+    "@apidog/longpoll": "0.0.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "sugar": "2.0.6"
+  },
+  "devDependencies": {
+    "@apidog/vk-typings": "0.1.2",
+    "@types/html-webpack-plugin": "3.2.1",
+    "@types/node": "12.12.14",
+    "@types/react": "16.9.14",
+    "@types/react-dom": "16.9.4",
+    "@types/webpack": "4.41.0",
+    "@typescript-eslint/eslint-plugin": "2.10.0",
+    "@typescript-eslint/parser": "2.10.0",
+    "css-loader": "3.2.1",
+    "eslint": "6.7.2",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-node": "10.0.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-standard": "4.0.1",
+    "html-webpack-plugin": "3.2.0",
+    "jest": "24.9.0",
+    "node-sass": "4.13.0",
+    "sass-loader": "8.0.0",
+    "style-loader": "1.0.1",
+    "stylelint": "12.0.0",
+    "stylelint-config-standard": "19.0.0",
+    "ts-loader": "6.2.1",
+    "typescript": "3.7.3",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.9.0"
+  }
+}
