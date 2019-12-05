@@ -17,7 +17,7 @@
     }],
     "rule-empty-line-before": ["always-multi-line", {
       "severity": "error"
-    }]
+    }],
     "number-leading-zero": "never"
   }
 }
