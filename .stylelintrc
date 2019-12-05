@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-standard",
+  "ignoreFiles": ["**/*.js", "**/*.ts", "**/*.tsx"],
   "rules": {
     "indentation": [4, {
       "except": ["value"],
@@ -12,9 +13,7 @@
     "color-hex-case": "lower",
     "color-hex-length": "long",
     "linebreaks": "unix",
-    "declaration-empty-line-before": ["always", {
-      "severity": "warning"
-    }],
+    "declaration-empty-line-before": null,
     "rule-empty-line-before": ["always-multi-line", {
       "severity": "error"
     }],

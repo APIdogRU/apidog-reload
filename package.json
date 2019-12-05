@@ -9,7 +9,7 @@
     "test": "jest",
     "lint:es": "npx eslint --ext .ts --ext .tsx ./src",
     "lint:style": "npx stylelint src/",
-    "lint": "npm run lint:es && npm run lint:style"
+    "lint": "run-p lint:es lint:style"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
     "jest": "24.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "4.13.0",
+    "npm-run-all": "4.1.5",
     "sass-loader": "8.0.0",
     "style-loader": "1.0.1",
     "stylelint": "12.0.0",

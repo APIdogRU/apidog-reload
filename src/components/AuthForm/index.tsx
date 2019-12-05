@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
+
 import * as React from 'react';
 import appList from '../../data/applications';
 import InputWithLabel, { IInputType } from '../../components/InputWithLabel';
-import Logo from '../../components/Logo';
 import './style.scss';
 import { IVKAuthSuccess } from '../../typings/authorization';
 
@@ -75,5 +76,4 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
             </div>
         );
     }
-
 }
