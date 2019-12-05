@@ -10,9 +10,14 @@
       "severity": "warning"
     }],
     "color-hex-case": "lower",
+    "color-hex-length": "long",
     "linebreaks": "unix",
-    "declaration-empty-line-before": ["never", {
+    "declaration-empty-line-before": ["always", {
       "severity": "warning"
+    }],
+    "rule-empty-line-before": ["always-multi-line", {
+      "severity": "error"
     }]
+    "number-leading-zero": "never"
   }
 }
