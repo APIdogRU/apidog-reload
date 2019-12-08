@@ -2,7 +2,12 @@
   "name": "@apidog/reload",
   "version": "8.0.0-alpha.1",
   "description": "APIdog site",
-  "main": "src/index.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "/build",
+    "/README.md"
+  ],
   "scripts": {
     "start": "webpack-dev-server --config .config/webpack.config.js --open",
     "build": "webpack --config .config/webpack.config.js",
@@ -22,7 +27,7 @@
   },
   "homepage": "https://github.com/APIdogRU/apidog-reload#readme",
   "dependencies": {
-    "@apidog/longpoll": "0.0.1",
+    "@apidog/longpoll": "0.0.3",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "sugar": "2.0.6"
