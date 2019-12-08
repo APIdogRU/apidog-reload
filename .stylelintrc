@@ -4,6 +4,7 @@
   "rules": {
     "indentation": [4, {
       "except": ["value"],
+      "ignore": ["value"],
       "severity": "error"
     }],
     "max-empty-lines": 1,
@@ -17,6 +18,9 @@
     "rule-empty-line-before": ["always-multi-line", {
       "severity": "error"
     }],
-    "number-leading-zero": "never"
+    "number-leading-zero": "never",
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": ["function", "if", "each", "include", "mixin"]
+    }]
   }
 }

@@ -1,14 +1,4 @@
-@import './constants.scss';
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    font-family: Lucida, verdana, tahoma, arial, sans-serif, Lucida Sans;
-}
+@import '../general.scss';
 
 html,
 body,
@@ -19,9 +9,4 @@ body,
         align-items: center;
         height: 100%;
     }
-}
-
-body {
-    background: $auth-dark-color;
-    color: #ffffff;
 }

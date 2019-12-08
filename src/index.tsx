@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import AppRoot from './components/AppRoot';
+import ClientPage from './pages/ClientPage';
 import './index.scss';
 
-ReactDOM.render(<AppRoot />, document.getElementById('root'));
+ReactDOM.render(<ClientPage />, document.getElementById('root'));

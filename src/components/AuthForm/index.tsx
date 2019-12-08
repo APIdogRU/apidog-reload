@@ -2,9 +2,11 @@
 
 import * as React from 'react';
 import appList from '../../data/applications';
-import InputWithLabel, { IInputType } from '../../components/InputWithLabel';
 import './style.scss';
-import { IVKAuthSuccess } from '../../typings/authorization';
+import { IVKAuthSuccess, IVKAuthApplication } from '../../typings/authorization';
+import Select from '../Select';
+import TextInput, { TextInputType } from '../TextInput';
+import Button, { ButtonType } from '../Button';
 
 export type EAuthSuccess = (result: IVKAuthSuccess) => any;
 
@@ -22,27 +24,23 @@ export interface IAuthFormProps {
 export interface IAuthFormState {
     login: string;
     password: string;
+    app?: IVKAuthApplication;
     error?: TAuthCauseError;
 }
 
 export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormState> {
     state: IAuthFormState = {
         login: '',
-        password: ''
+        password: '',
+        app: appList[0]
     };
 
     private onChange = (name: keyof IAuthFormState, value: string) => {
         this.setState({ [name]: value } as unknown as IAuthFormState);
-    }
+    };
 
-    private renderAppList = () => {
-        return (
-            <select name="appId">
-                {appList.map(app => (
-                    <option key={app.appId} value={app.appId}>{app.title}</option>
-                ))}
-            </select>
-        );
+    private onSelectApp = (name: string, index: number, app: IVKAuthApplication) => {
+
     };
 
     private renderError = () => {
@@ -54,25 +52,37 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
                 return <div>error</div>;
             }
         }
-    }
+    };
 
     render() {
         return (
             <div className="auth-form">
-                <InputWithLabel
+                <TextInput
                     onChange={this.onChange}
                     name="login"
                     label="Логин"
                     value="test"
-                    type={IInputType.TEXT} />
-                <InputWithLabel
+                    type={TextInputType.text} />
+                <TextInput
                     onChange={this.onChange}
                     name="password"
                     label="Пароль"
-                    type={IInputType.PASSWORD} />
-                {this.renderAppList()}
+                    required={true}
+                    type={TextInputType.password} />
+                <Select
+                    items={appList.map(app => ({
+                        value: app.appId,
+                        title: app.title,
+                        data: app
+                    }))}
+                    name="appId"
+                    label="Приложение для авторизации"
+                    selectedIndex={0}
+                    onSelect={this.onSelectApp} />
                 {this.renderError()}
-                <input type="submit" value="Авторизация" />
+                <Button
+                    label="Авторизация"
+                    type={ButtonType.submit} />
             </div>
         );
     }
