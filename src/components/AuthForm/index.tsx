@@ -6,7 +6,7 @@ import './style.scss';
 import { IVKAuthSuccess, IVKAuthApplication } from '../../typings/authorization';
 import Select from '../Select';
 import TextInput, { TextInputType } from '../TextInput';
-import Button, { ButtonType } from '../Button';
+import Button from '../Button';
 import Checkbox from '../Checkbox';
 
 export type EAuthSuccess = (result: IVKAuthSuccess) => any;
@@ -102,7 +102,8 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
                     checked={this.state.temporary} />
                 <Button
                     label="Авторизация"
-                    type={ButtonType.submit} />
+                    type='submit'
+                    size='l' />
             </div>
         );
     }

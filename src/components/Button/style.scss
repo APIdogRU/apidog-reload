@@ -28,12 +28,12 @@
         }
     }
 
-    $s: (
-        (attention, rgb(209, 35, 35), #ffffff),
-        (negative, rgb(175, 175, 175), #000000)
+    $type: (
+        ('attention', rgb(209, 35, 35), #ffffff),
+        ('negative', rgb(175, 175, 175), #000000)
     );
 
-    @each $name, $bg, $fg in $s {
+    @each $name, $bg, $fg in $type {
 
         &__#{$name} {
             background: $bg;

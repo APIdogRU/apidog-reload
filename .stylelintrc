@@ -16,7 +16,8 @@
     "linebreaks": "unix",
     "declaration-empty-line-before": null,
     "rule-empty-line-before": ["always-multi-line", {
-      "severity": "error"
+      "severity": "error",
+      "ignore": ["inside-block"]
     }],
     "number-leading-zero": "never",
     "at-rule-no-unknown": [true, {
