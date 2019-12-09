@@ -7,6 +7,7 @@ import { IVKAuthSuccess, IVKAuthApplication } from '../../typings/authorization'
 import Select from '../Select';
 import TextInput, { TextInputType } from '../TextInput';
 import Button, { ButtonType } from '../Button';
+import Checkbox from '../Checkbox';
 
 export type EAuthSuccess = (result: IVKAuthSuccess) => any;
 
@@ -24,7 +25,8 @@ export interface IAuthFormProps {
 export interface IAuthFormState {
     login: string;
     password: string;
-    app?: IVKAuthApplication;
+    app: IVKAuthApplication;
+    temporary: boolean;
     error?: TAuthCauseError;
 }
 
@@ -32,15 +34,24 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
     state: IAuthFormState = {
         login: '',
         password: '',
-        app: appList[0]
+        app: appList[0],
+        temporary: false
     };
 
     private onChange = (name: keyof IAuthFormState, value: string) => {
-        this.setState({ [name]: value } as unknown as IAuthFormState);
+        this.setField(name, value);
     };
 
-    private onSelectApp = (name: string, index: number, app: IVKAuthApplication) => {
+    private onSelectApp = (name: keyof IAuthFormState, index: number, app: IVKAuthApplication) => {
+        this.setField(name, app);
+    };
 
+    private onSetChecked = (name: keyof IAuthFormState, state: boolean) => {
+        this.setField(name, state);
+    };
+
+    private setField = (name: keyof IAuthFormState, value: any) => {
+        this.setState({ [name]: value } as unknown as IAuthFormState);
     };
 
     private renderError = () => {
@@ -80,6 +91,15 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
                     selectedIndex={0}
                     onSelect={this.onSelectApp} />
                 {this.renderError()}
+                <Checkbox
+                    name="temporary"
+                    label="Выйти по окончанию сессии"
+                    sublabel={{
+                        on: 'Сессия закроется после закрытия окна браузера',
+                        off: 'Сессия останется на 90 дней от последнего захода'
+                    }}
+                    onSetChecked={this.onSetChecked}
+                    checked={this.state.temporary} />
                 <Button
                     label="Авторизация"
                     type={ButtonType.submit} />
