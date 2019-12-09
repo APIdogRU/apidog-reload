@@ -1,9 +1,17 @@
 import React from 'react';
 
-export default class AppRoot extends React.Component {
+export interface IAppRootProps {
+    dark?: boolean;
+}
+
+export default class AppRoot extends React.Component<IAppRootProps> {
+    componentDidMount() {
+        if (this.props.dark) {
+            document.documentElement.classList.add('theme__dark');
+        }
+    }
+
     render() {
-        return (
-            <p>Hello, world</p>
-        );
+        return this.props.children;
     }
 }

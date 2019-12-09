@@ -1,0 +1,43 @@
+.auth-form {
+    padding: 18px 24px;
+}
+
+.input-wl {
+    border-color: #ffffff !important;
+    width: 100%;
+
+    margin: 8px 0;
+    display: block;
+
+    &--label {
+        color: #cccccc;
+    }
+
+    &__active .input-wl--label,
+    &--input {
+        color: #ffffff !important;
+    }
+}
+
+.app-select {
+    position: relative;
+
+    width: 100%;
+
+    margin: 4px 0;
+    border: 1px solid black;
+
+    &--native,
+    &--label {
+        line-height: 28px;
+    }
+
+    &--native {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -1,0 +1,21 @@
+@import './constants.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Lucida, verdana, tahoma, arial, sans-serif, Lucida Sans;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.theme__dark {
+    background: $primary-color-bg;
+    color: $primary-color-fg;
+}

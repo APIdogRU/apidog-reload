@@ -27,7 +27,9 @@
 		"node",
 		"promise",
 		"standard",
-		"react"
+		"dom",
+		"react",
+		"babel"
 	],
 
 	"settings": {
@@ -48,7 +50,7 @@
 		"arrow-spacing": ["error", { "before": true, "after": true }],
 		"block-spacing": ["error", "always"],
 		"brace-style": ["error", "1tbs", { "allowSingleLine": true }],
-		"camelcase": ["error", { "properties": "never" }],
+		"camelcase": "off",
 		"comma-dangle": ["error", {
 			"arrays": "never",
 			"objects": "never",
@@ -170,7 +172,8 @@
 		"no-unreachable": "error",
 		"no-unsafe-finally": "error",
 		"no-unsafe-negation": "error",
-		"no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true, "allowTaggedTemplates": true }],
+		"no-unused-expressions": "off",
+      	"babel/no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true, "allowTaggedTemplates": true }],
 		"no-use-before-define": ["error", { "functions": false, "classes": false, "variables": false }],
 		"no-useless-call": "error",
 		"no-useless-computed-key": "error",
