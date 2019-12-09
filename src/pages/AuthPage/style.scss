@@ -1,5 +1,11 @@
 @import '../../auth/constants.scss';
 
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .auth {
     width: 95%;
     margin: 20px auto;

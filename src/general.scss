@@ -11,15 +11,8 @@ html {
 }
 
 html,
-body,
-#root {
-    min-height: 100%;
-
-    @media (min-width: 600px) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+body {
+    height: 100%;
 }
 
 .theme__dark {
