@@ -1,5 +1,22 @@
 @import '../../constants.scss';
 
+@keyframes x-checkbox-check {
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    50% {
+        width: 0;
+        height: 4px;
+    }
+
+    100% {
+        width: 8px;
+        height: 4px;
+    }
+}
+
 .xCheckbox {
     display: flex;
     flex-flow: row nowrap;
@@ -15,12 +32,14 @@
     &__checked &--shape::after {
         content: '';
         position: absolute;
-        top: 1px;
-        left: 2px;
-        transform: rotate(-45deg);
+        bottom: 0;
+        left: 0;
+        transform: translate(6px, -3px) rotate(-45deg);
+        transform-origin: bottom left;
         border: 2px solid transparent;
         border-color: transparent transparent $primary-color-bg $primary-color-bg;
         display: block;
+        animation: x-checkbox-check .1s ease-in-out 1;
         width: 8px;
         height: 4px;
 
