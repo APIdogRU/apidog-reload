@@ -95,8 +95,8 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
                     name="temporary"
                     label="Выйти по окончанию сессии"
                     sublabel={{
-                        on: 'Сессия закроется после закрытия окна браузера',
-                        off: 'Сессия останется на 90 дней от последнего захода'
+                        on: 'Сессия активна до закрытия окна браузера',
+                        off: 'Сессия активна 90 дней от последнего захода'
                     }}
                     onSetChecked={this.onSetChecked}
                     checked={this.state.temporary} />
