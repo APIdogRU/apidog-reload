@@ -21,7 +21,8 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
         size: 'm'
     };
 
-    private onClick = (_event: React.MouseEvent<HTMLInputElement>) => {
+    // eslint-disable-next-line no-unused-vars
+    private onClick = (event: React.MouseEvent<HTMLInputElement>) => {
         this.props.onClick();
     };
 

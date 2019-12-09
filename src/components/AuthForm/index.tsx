@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
-
 import * as React from 'react';
 import appList from '../../data/applications';
 import './style.scss';
+// eslint-disable-next-line no-unused-vars
 import { IVKAuthSuccess, IVKAuthApplication } from '../../typings/authorization';
 import Select from '../Select';
 import TextInput, { TextInputType } from '../TextInput';
@@ -11,12 +10,14 @@ import Checkbox from '../Checkbox';
 
 export type EAuthSuccess = (result: IVKAuthSuccess) => any;
 
+/* eslint-disable no-unused-vars */
 export enum TAuthCauseError {
     INVALID_PAIR,
     CAPTCHA_REQUIRED,
     INVALID_CAPTCHA,
     TOO_MANY_REQUESTS
 }
+/* eslint-enable no-unused-vars */
 
 export interface IAuthFormProps {
     onAuthorized: EAuthSuccess;
@@ -42,7 +43,8 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
         this.setField(name, value);
     };
 
-    private onSelectApp = (name: keyof IAuthFormState, index: number, app: IVKAuthApplication) => {
+    // eslint-disable-next-line no-unused-vars
+    private onSelectApp = (name: keyof IAuthFormState, _index: number, app: IVKAuthApplication) => {
         this.setField(name, app);
     };
 
@@ -52,6 +54,16 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
 
     private setField = (name: keyof IAuthFormState, value: any) => {
         this.setState({ [name]: value } as unknown as IAuthFormState);
+    };
+
+    private onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        this.props.onAuthorized({
+            access_token: 'abc',
+            expire_in: 0,
+            user_id: 1
+        });
     };
 
     private renderError = () => {
@@ -67,7 +79,7 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
 
     render() {
         return (
-            <div className="auth-form">
+            <form className="auth-form" onSubmit={this.onSubmit}>
                 <TextInput
                     onChange={this.onChange}
                     name="login"
@@ -104,7 +116,7 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
                     label="Авторизация"
                     type='submit'
                     size='l' />
-            </div>
+            </form>
         );
     }
 }
