@@ -9,6 +9,7 @@ export interface ICheckboxProps {
     label: string;
     sublabel?: string | { on: string, off: string };
     checked?: boolean;
+    disabled?: boolean;
     onSetChecked?: FCheckboxOnSetChecked;
 }
 
@@ -45,11 +46,12 @@ export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxS
 
     render() {
         const { checked } = this.state;
-        const { name, value, label, sublabel } = this.props;
+        const { name, value, label, sublabel, disabled } = this.props;
 
         const cls = ['xCheckbox'];
 
         checked && cls.push('xCheckbox__checked');
+        disabled && cls.push('xCheckbox__disabled');
         sublabel && cls.push('xCheckbox__has-sublabel');
 
         return (
@@ -60,12 +62,13 @@ export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxS
                     name={name}
                     value={value}
                     checked={checked}
+                    disabled={disabled}
                     onChange={this.onChange} />
                 <div className="xCheckbox--shape" />
                 <div className="xCheckbox--content">
-                    <div className="xChecbox--label">{label}</div>
+                    <div className="xCheckbox--label">{label}</div>
                     {sublabel && (
-                        <div className="xChecbox--sublabel">{this.getSubLabel()}</div>
+                        <div className="xCheckbox--sublabel">{this.getSubLabel()}</div>
                     )}
                 </div>
             </label>
