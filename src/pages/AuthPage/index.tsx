@@ -21,7 +21,7 @@ export default class AuthPage extends React.Component<IAuthPageProps, IAuthPageS
         return (
             <AppRoot dark={true}>
                 <div className="auth">
-                    <Logo width={200} />
+                    <Logo width={270} />
                     <p className="auth-description">APIdog &mdash; неофициальный клиент для ВКонтакте.</p>
                     <AuthForm onAuthorized={this.onAuthorized} />
                     <div className="auth-footer">
