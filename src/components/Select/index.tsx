@@ -6,7 +6,7 @@ export interface ISelectProps<T> {
     name: string;
     label?: string;
     items: ISelectOption<T>[];
-    onSelect?: FSelectOnSelect<T>;
+    onSelect?: SelectOnSelect<T>;
 }
 
 export interface ISelectState {
@@ -20,7 +20,7 @@ export interface ISelectOption<T> {
     data?: T;
 }
 
-export type FSelectOnSelect<T> = (name: string, index: number, item: T) => any;
+export type SelectOnSelect<T> = (name: string, index: number, item: T) => void;
 
 export default class Select<T> extends React.Component<ISelectProps<T>, ISelectState> {
     state: ISelectState;
@@ -29,7 +29,7 @@ export default class Select<T> extends React.Component<ISelectProps<T>, ISelectS
         super(props);
 
         this.state = {
-            selectedIndex: props.selectedIndex || 0
+            selectedIndex: props.selectedIndex || 0,
         };
     }
 

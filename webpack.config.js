@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const isProduction = process.env.ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 const mode = isProduction ? 'production' : 'development';
 
@@ -13,6 +13,7 @@ const buildDir = 'build';
 
 module.exports = {
     mode,
+    target: 'web',
 
     entry: {
         auth: path.resolve('src', authDir, 'index.tsx'),
@@ -34,7 +35,15 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: [
+                    {
+                        loader: require.resolve('awesome-typescript-loader'),
+                        options: {
+                            useBabel: true,
+                            silent: isProduction,
+                        },
+                    },
+                ],
                 exclude: /node_modules/,
             },
             {
@@ -64,11 +73,6 @@ module.exports = {
         minimizer: [new TerserPlugin()],
     },
 
-    externals: {
-        'react': 'React',
-        'react-dom' : 'ReactDOM'
-    },
-
     plugins: [
         new webpack.EnvironmentPlugin({
             VERSION: process.env.npm_package_version,
@@ -92,7 +96,5 @@ module.exports = {
         })
     ],
 
-    stats: {
-        children: false,
-    },
+    stats: 'minimal',
 };

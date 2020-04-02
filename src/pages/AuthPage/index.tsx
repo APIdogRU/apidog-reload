@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AuthForm, { TAuthCauseError } from '../../components/AuthForm'; // eslint-disable-line no-unused-vars
+import AuthForm, { AuthError } from '../../components/AuthForm'; // eslint-disable-line no-unused-vars
 import { IVKAuthSuccess } from '../../typings/authorization'; // eslint-disable-line no-unused-vars
 import Logo from '../../components/Logo';
 import './style.scss';
@@ -7,7 +7,7 @@ import AppRoot from '../../components/AppRoot';
 
 export type IAuthPageProps = {};
 export interface IAuthPageState {
-    error?: TAuthCauseError;
+    error?: AuthError;
 }
 
 export default class AuthPage extends React.Component<IAuthPageProps, IAuthPageState> {

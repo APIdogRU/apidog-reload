@@ -1,16 +1,17 @@
 import * as React from 'react';
 import './style.scss';
+import classNames from 'classnames';
 
-type FCheckboxOnSetChecked = (name: string, state: boolean) => any;
+type CheckboxOnSetChecked = (name: string, state: boolean) => void;
 
 export interface ICheckboxProps {
     name: string;
     value?: string;
     label: string;
-    sublabel?: string | { on: string, off: string };
+    sublabel?: string | { on: string; off: string };
     checked?: boolean;
     disabled?: boolean;
-    onSetChecked?: FCheckboxOnSetChecked;
+    onSetChecked?: CheckboxOnSetChecked;
 }
 
 export interface ICheckboxState {
@@ -22,7 +23,7 @@ export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxS
         super(props);
 
         this.state = {
-            checked: props.checked
+            checked: props.checked,
         };
     }
 
@@ -33,7 +34,7 @@ export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxS
     };
 
     private getSubLabel = () => {
-        const sublabel = this.props.sublabel!;
+        const sublabel = this.props.sublabel;
 
         if (typeof sublabel === 'string') {
             return sublabel;
@@ -48,14 +49,12 @@ export default class Checkbox extends React.Component<ICheckboxProps, ICheckboxS
         const { checked } = this.state;
         const { name, value, label, sublabel, disabled } = this.props;
 
-        const cls = ['xCheckbox'];
-
-        checked && cls.push('xCheckbox__checked');
-        disabled && cls.push('xCheckbox__disabled');
-        sublabel && cls.push('xCheckbox__has-sublabel');
-
         return (
-            <label className={cls.join(' ')}>
+            <label className={classNames('xCheckbox', {
+                'xCheckbox__checked': checked,
+                'xCheckbox__disabled': disabled,
+                'xCheckbox__has-sublabel': sublabel,
+            })}>
                 <input
                     className="xCheckbox--native"
                     type="checkbox"
