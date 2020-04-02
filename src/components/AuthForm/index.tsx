@@ -1,17 +1,16 @@
 import * as React from 'react';
 import appList from '../../data/applications';
 import './style.scss';
-// eslint-disable-next-line no-unused-vars
 import { IVKAuthSuccess, IVKAuthApplication } from '../../typings/authorization';
 import Select from '../Select';
 import TextInput, { TextInputType } from '../TextInput';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 
-export type EAuthSuccess = (result: IVKAuthSuccess) => any;
+export type AuthCallback = (result: IVKAuthSuccess) => void;
 
 /* eslint-disable no-unused-vars */
-export enum TAuthCauseError {
+export enum AuthError {
     INVALID_PAIR,
     CAPTCHA_REQUIRED,
     INVALID_CAPTCHA,
@@ -20,7 +19,7 @@ export enum TAuthCauseError {
 /* eslint-enable no-unused-vars */
 
 export interface IAuthFormProps {
-    onAuthorized: EAuthSuccess;
+    onAuthorized: AuthCallback;
 }
 
 export interface IAuthFormState {
@@ -28,7 +27,7 @@ export interface IAuthFormState {
     password: string;
     app: IVKAuthApplication;
     temporary: boolean;
-    error?: TAuthCauseError;
+    error?: AuthError;
 }
 
 export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormState> {
@@ -36,7 +35,7 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
         login: '',
         password: '',
         app: appList[0],
-        temporary: false
+        temporary: false,
     };
 
     private onChange = (name: keyof IAuthFormState, value: string) => {
@@ -52,14 +51,14 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
         this.setField(name, state);
     };
 
-    private setField = (name: keyof IAuthFormState, value: any) => {
+    private setField = (name: keyof IAuthFormState, value: unknown) => {
         this.setState({ [name]: value } as unknown as IAuthFormState);
     };
 
     private onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        this.props.onAuthorized({
+        this.props.onAuthorized?.({
             access_token: 'abc',
             expire_in: 0,
             user_id: 1
@@ -68,10 +67,10 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
 
     private renderError = () => {
         switch (this.state.error) {
-            case TAuthCauseError.CAPTCHA_REQUIRED:
-            case TAuthCauseError.INVALID_CAPTCHA:
-            case TAuthCauseError.INVALID_PAIR:
-            case TAuthCauseError.TOO_MANY_REQUESTS: {
+            case AuthError.CAPTCHA_REQUIRED:
+            case AuthError.INVALID_CAPTCHA:
+            case AuthError.INVALID_PAIR:
+            case AuthError.TOO_MANY_REQUESTS: {
                 return <div>error</div>;
             }
         }
@@ -84,7 +83,6 @@ export default class AuthForm extends React.Component<IAuthFormProps, IAuthFormS
                     onChange={this.onChange}
                     name="login"
                     label="Логин"
-                    value="test"
                     type={TextInputType.text} />
                 <TextInput
                     onChange={this.onChange}

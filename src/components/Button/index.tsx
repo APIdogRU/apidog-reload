@@ -1,12 +1,13 @@
 import * as React from 'react';
 import './style.scss';
+import classNames from 'classnames';
 
-export type FButtonOnClick = () => any;
+export type ButtonOnClick = () => void;
 
 export interface IButtonProps {
     label: string;
     type?: 'button' | 'submit';
-    onClick?: FButtonOnClick;
+    onClick?: ButtonOnClick;
     size?: 's' | 'm' | 'l';
     disabled?: boolean;
 }
@@ -18,13 +19,11 @@ export interface IButtonState {
 export default class Button extends React.Component<IButtonProps, IButtonState> {
     public static defaultProps = {
         type: 'button',
-        size: 'm'
+        size: 'm',
     };
 
-    // eslint-disable-next-line no-unused-vars
-    private onClick = (event: React.MouseEvent<HTMLInputElement>) => {
-        this.props.onClick();
-    };
+
+    private onClick = () => this.props.onClick();
 
     render() {
         const {
@@ -33,14 +32,11 @@ export default class Button extends React.Component<IButtonProps, IButtonState> 
             disabled,
             size
         } = this.props;
-
-        const cls = ['xButton'];
-
-        size && cls.push(`xButton__size-${size}`);
-
         return (
             <input
-                className={cls.join(' ')}
+                className={classNames('xButton', {
+                    [`xButton__size-${size}`]: !!size,
+                })}
                 type={type}
                 value={label}
                 onClick={this.onClick}

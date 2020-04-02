@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-
 import * as React from 'react';
-
 import './style.scss';
+import classNames from 'classnames';
 
-export type FTextInputOnChange = (name: string, value: string) => any;
+export type TextInputOnChange = (name: string, value: string) => void;
 
 export interface ITextInputProps {
     type: TextInputType;
@@ -15,7 +13,7 @@ export interface ITextInputProps {
     required?: boolean;
     readonly?: boolean;
     disabled?: boolean;
-    onChange?: FTextInputOnChange;
+    onChange?: TextInputOnChange;
 }
 
 export interface ITextInputState {
@@ -23,7 +21,7 @@ export interface ITextInputState {
     value: string;
 }
 
-export enum TextInputType {
+export const enum TextInputType {
     text = 'text',
     password = 'password',
     number = 'number',
@@ -34,7 +32,7 @@ export enum TextInputType {
 export default class TextInput extends React.Component<ITextInputProps, ITextInputState> {
     public static defaultProps: Partial<ITextInputProps> = {
         type: TextInputType.text,
-        value: ''
+        value: '',
     };
 
     constructor(props: ITextInputProps) {
@@ -46,19 +44,11 @@ export default class TextInput extends React.Component<ITextInputProps, ITextInp
         };
     }
 
-    private isEmpty = (value: string = this.state.value): boolean => {
-        return value.trim().length > 0;
-    };
+    private isEmpty = (value: string = this.state.value): boolean => value.trim().length > 0;
 
-    private onFocus = (_event: React.FocusEvent<HTMLInputElement>) => {
-        const active = true;
-        this.setState({ active });
-    };
+    private onFocus = () => this.setState({ active: true });
 
-    private onBlur = (_event: React.FocusEvent<HTMLInputElement>) => {
-        const active = this.isEmpty();
-        this.setState({ active });
-    };
+    private onBlur = () => this.setState({ active: this.isEmpty() });
 
     private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value.trim();
@@ -73,28 +63,26 @@ export default class TextInput extends React.Component<ITextInputProps, ITextInp
             label,
             required,
             readonly,
-            disabled
+            disabled,
         } = this.props;
 
         const {
             value,
-            active
+            active,
         } = this.state;
 
         const id = `input-${name}`;
-        const attrs: Record<string, any> = {};
+        const attrs: Record<string, boolean> = {};
 
         required && (attrs.required = true);
         readonly && (attrs.readonly = true);
         disabled && (attrs.disabled = true);
 
-        const cls = ['xInput'];
-
-        active && cls.push('xInput__active');
-
         return (
             <div
-                className={cls.join(' ')}>
+                className={classNames('xInput', {
+                    'xInput__active': active,
+                })}>
                 <input
                     type={type}
                     name={name}
